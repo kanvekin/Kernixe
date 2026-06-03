@@ -369,19 +369,26 @@ func RawInfoModal(id, title, description string, isOpenAsar bool) g.Widget {
 						g.Style().SetFontSize(30).To(
 							g.Label(title),
 						),
+					),
+					g.Dummy(0, 10),
+					g.Style().SetFontSize(16).To(
 						g.Label(description).Wrapped(true),
-						&CondWidget{id == "#scuffed-install", func() g.Widget {
-							return g.Column(
-								g.Dummy(0, 10),
+					),
+					&CondWidget{id == "#scuffed-install", func() g.Widget {
+						return g.Column(
+							g.Dummy(0, 10),
+							g.Align(g.AlignCenter).To(
 								g.Button("Take me there!").OnClick(func() {
 									// this issue only exists on windows so using Windows specific path is oki
 									username := os.Getenv("USERNAME")
 									programData := os.Getenv("PROGRAMDATA")
 									g.OpenURL("file://" + path.Join(programData, username))
 								}).Size(200, 30),
-							)
-						}, nil},
-						g.Dummy(0, 20),
+							),
+						)
+					}, nil},
+					g.Dummy(0, 20),
+					g.Align(g.AlignCenter).To(
 						&CondWidget{isOpenAsar,
 							func() g.Widget {
 								return g.Row(

@@ -152,14 +152,14 @@ func (di *DiscordInstall) patch() error {
 			}
 		}
 
-		Log.Debug("This is a flatpak. Trying to grant the Flatpak access to", BaseDir+"...")
+		Log.Debug("This is a flatpak. Trying to grant the Flatpak access to", EquicordDirectory+"...")
 
 		isSystemFlatpak := strings.HasPrefix(di.path, "/var")
 		var args []string
 		if !isSystemFlatpak {
 			args = append(args, "--user")
 		}
-		args = append(args, "override", name, "--filesystem="+BaseDir)
+		args = append(args, "override", name, "--filesystem="+EquicordDirectory)
 		fullCmd := "flatpak " + strings.Join(args, " ")
 
 		Log.Debug("Running", fullCmd)
@@ -169,7 +169,7 @@ func (di *DiscordInstall) patch() error {
 			// We are operating on a user flatpak but are root
 			actualUser := os.Getenv("SUDO_USER")
 			Log.Debug("This is a user install but we are root. Using su to run as", actualUser)
-			cmd := exec.Command("su", "-", actualUser, "-c", fullCmd)
+			cmd := exec.Command("su", "-", actualUser, "-c", "sh", "-c", fullCmd)
 			cmd.Stdout = os.Stdout
 			cmd.Stderr = os.Stderr
 			err = cmd.Run()
@@ -180,7 +180,7 @@ func (di *DiscordInstall) patch() error {
 			err = cmd.Run()
 		}
 		if err != nil {
-			return errors.New("Failed to grant Discord Flatpak access to " + BaseDir + ": " + err.Error())
+			return errors.New("Failed to grant Discord Flatpak access to " + EquicordDirectory + ": " + err.Error())
 		}
 	}
 	return nil
