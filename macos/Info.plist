@@ -3,13 +3,13 @@
 <plist version="1.0">
     <dict>
         <key>CFBundleExecutable</key>
-        <string>Equilotl</string>
+        <string>Kernixe</string>
 
         <key>CFBundleIconFile</key>
         <string>icon.icns</string>
 
         <key>CFBundleIdentifier</key>
-        <string>org.equicord.equilotl</string>
+        <string>org.kernixcord.Kernixe</string>
 
         <key>NSHighResolutionCapable</key>
         <true/>

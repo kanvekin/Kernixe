@@ -7,7 +7,7 @@
 package main
 
 import (
-	"equilotl/buildinfo"
+	"kernixe/buildinfo"
 	"errors"
 	"fmt"
 	"io"
@@ -46,22 +46,22 @@ func init() {
 }
 
 func GetInstallerDownloadLink() string {
-	const BaseUrl = "https://github.com/Equicord/Equilotl/releases/latest/download/"
+	const BaseUrl = "https://github.com/kanvekin/Kernixe/releases/latest/download/"
 	switch runtime.GOOS {
 	case "windows":
-		filename := Ternary(buildinfo.UiType == buildinfo.UiTypeCli, "EquilotlCli.exe", "Equilotl.exe")
+		filename := Ternary(buildinfo.UiType == buildinfo.UiTypeCli, "KernixeCli.exe", "Kernixe.exe")
 		return BaseUrl + filename
 	case "darwin":
 		switch runtime.GOARCH {
 		case "amd64":
-			return BaseUrl + "Equilotl-darwin-x64.zip"
+			return BaseUrl + "Kernixe-darwin-x64.zip"
 		case "arm64":
-			return BaseUrl + "Equilotl-darwin-arm64.zip"
+			return BaseUrl + "Kernixe-darwin-arm64.zip"
 		default:
 			return ""
 		}
 	case "linux":
-		return BaseUrl + "EquilotlCli-linux"
+		return BaseUrl + "KernixeCli-linux"
 	default:
 		return ""
 	}
@@ -97,7 +97,7 @@ func UpdateSelf() error {
 	}
 	defer res.Body.Close()
 
-	tmp, err := os.CreateTemp(ownExeDir, "EquilotlUpdate")
+	tmp, err := os.CreateTemp(ownExeDir, "KernixeUpdate")
 	if err != nil {
 		return fmt.Errorf("Failed to create tempfile: %w", err)
 	}

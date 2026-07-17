@@ -1,4 +1,4 @@
-module equilotl
+module kernixe
 
 go 1.26.2
 
