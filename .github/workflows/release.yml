@@ -159,17 +159,6 @@ jobs:
           name: Kernixe-linux
           path: linux
 
-      - name: "Download MacOS Artifacts"
-        uses: actions/download-artifact@v8
-        with:
-          name: Kernixe-macos
-          path: macos
-
-      - uses: actions/download-artifact@v8
-        with:
-          name: Kernixe-macos-arm64
-          path: macos
-
       - name: "Download Windows Artifacts"
         uses: actions/download-artifact@v8
         with:
@@ -197,8 +186,4 @@ jobs:
             linux/Kernixe-wayland
             linux/Kernixe
             linux/KernixeCli-linux
-            macos/Kernixe-darwin-x64.zip
-            macos/Kernixe-darwin-arm64.zip
-            macos/KernixeCli-darwin-x64
-            macos/KernixeCli-darwin-arm64
             windows/Kernixe*.exe
