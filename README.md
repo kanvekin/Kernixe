@@ -1,6 +1,6 @@
 # Kernixe
 
-The Kernixcord Installer allows you to install [Kernixcord, the cutest Discord Desktop client mod.](https://github.com/kanvekin/Kernixcord)
+The Kernixcord Installer allows you to install [Kernixcord, the cutest Discord Desktop client mod](https://github.com/kanvekin/Kernixcord)
 ## Usage
 
 Windows
