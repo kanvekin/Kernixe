@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"path/filepath"
 	"strconv"
 	"strings"
 )
@@ -28,7 +29,9 @@ func WriteAppAsar(outFile string, kernixcordAsarPath string) error {
 
 	fileContents := ""
 
-	patcherPathB, _ := json.Marshal(kernixcordAsarPath)
+	// Convert Windows backslashes to forward slashes for JavaScript compatibility
+	normalizedPath := strings.ReplaceAll(kernixcordAsarPath, "\\", "/")
+	patcherPathB, _ := json.Marshal(normalizedPath)
 	indexJsContents := "require(" + string(patcherPathB) + ")"
 	indexJsBytes := len([]byte(indexJsContents))
 	fileContents += indexJsContents
