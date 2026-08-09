@@ -60,12 +60,12 @@ jobs:
         shell: msys2 {0}
         run: |
           go-winres make --product-version "git-tag"
-          CGO_ENABLED=1 GOOS=windows GOARCH=amd64 go build -v -tags "static gui" -ldflags "-s -w -H=windowsgui -extldflags=-static -X 'equilotl/buildinfo.InstallerGitHash=$(git rev-parse --short HEAD)' -X 'equilotl/buildinfo.InstallerTag=${{ github.ref_name }}'" -o Kernixe.exe
+          CGO_ENABLED=1 GOOS=windows GOARCH=amd64 go build -v -tags "static gui" -ldflags "-s -w -H=windowsgui -extldflags=-static -X 'github.com/kanvekin/Kernixe/buildinfo.InstallerGitHash=$(git rev-parse --short HEAD)' -X 'github.com/kanvekin/Kernixe/buildinfo.InstallerTag=${{ github.ref_name }}'" -o Kernixe.exe
 
       - name: Build CLI
         shell: msys2 {0}
         run: |
-          CGO_ENABLED=1 GOOS=windows GOARCH=amd64 go build -v -tags "cli" -ldflags "-s -w -X 'equilotl/buildinfo.InstallerGitHash=$(git rev-parse --short HEAD)' -X 'equilotl/buildinfo.InstallerTag=${{ github.ref_name }}'" -o KernixeCli.exe
+          CGO_ENABLED=1 GOOS=windows GOARCH=amd64 go build -v -tags "cli" -ldflags "-s -w -X 'github.com/kanvekin/Kernixe/buildinfo.InstallerGitHash=$(git rev-parse --short HEAD)' -X 'github.com/kanvekin/Kernixe/buildinfo.InstallerTag=${{ github.ref_name }}'" -o KernixeCli.exe
 
       - name: Upload artifact
         uses: actions/upload-artifact@v7
@@ -105,6 +105,7 @@ jobs:
           prerelease: ${{ contains(github.ref_name, '-') }}
           draft: false
           body: |
-            This is release ${{ github.ref_name }} of Equilotl.
+            This is release ${{ github.ref_name }} of Kernixe.
           files: |
-            windows/Kernixe*.exe
+            windows/Kernixe.exe
+            windows/KernixeCli.exe

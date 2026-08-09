@@ -1,4 +1,4 @@
-module equilotl
+module github.com/kanvekin/Kernixe
 
 go 1.26.2
 
